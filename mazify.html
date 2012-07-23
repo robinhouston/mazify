@@ -54,8 +54,13 @@
           canvas.width = img.width;
           canvas.height = img.height;
           
+          
+          // We want the width and height to be odd numbers
+          if ((canvas.width % 2) == 0)  canvas.width--;
+          if ((canvas.height % 2) == 0) canvas.height--;
+          
           var cx = canvas.getContext("2d");
-          cx.drawImage(img, 0, 0);
+          cx.drawImage(img, 0, 0, canvas.width, canvas.height);
           content.appendChild(canvas);
           
           cx.lineWidth = 1;
@@ -95,8 +100,8 @@
             }
             
             for (var i=0; i<path.length-1; i++) {
-              cx.fillRect(2*path[i][0], 2*path[i][1], 1, 1);
-              cx.fillRect(path[i][0] + path[i+1][0], path[i][1] + path[i+1][1], 1, 1);
+              cx.fillRect(2*path[i][0]+1, 2*path[i][1]+1, 1, 1);
+              cx.fillRect(path[i][0] + path[i+1][0] + 1, path[i][1] + path[i+1][1] + 1, 1, 1);
               cells[path[i]] = 1;
               n += 1;
             }
