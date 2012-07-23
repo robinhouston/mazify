@@ -22,9 +22,9 @@
     (function() {
       var params = {};
       (function (query, re, match) {
-          while (match = re.exec(query)) {
-              params[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
-          }
+        while (match = re.exec(query)) {
+          params[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
+        }
       })(window.location.search.substring(1).replace(/\+/g, "%20"), /([^&=]+)=?([^&]*)/g);
       
       var content = document.getElementById("content");
