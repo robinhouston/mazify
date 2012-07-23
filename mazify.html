@@ -30,6 +30,19 @@
       var content = document.getElementById("content");
       var form = document.getElementById("form");
       
+      var cannotCanvas = function() {
+        // See if we can make a canvas 2d context
+        var elem = document.createElement('canvas');
+        return !(elem.getContext && elem.getContext('2d'));
+      };
+      if (cannotCanvas()) {
+          content.removeChild(form);
+          var p = document.createElement("p");
+          p.innerHTML = "Sad face! Your web browser is not good enough for mazifying things. Get a better one?";
+          content.appendChild(p);
+          return;
+      }
+      
       if (params.url) form.url.value = params.url;
       
       form.onsubmit = function() {
